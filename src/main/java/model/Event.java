@@ -10,8 +10,8 @@ public class Event {
     private String category;
     private Calendar date;
 
-    Event(Integer id, String name, String description,
-          String category, Calendar date){
+    public Event(Integer id, String name, String description,
+                 String category, Calendar date){
         this.id = id;
         this.name = name;
         this.description = description;
