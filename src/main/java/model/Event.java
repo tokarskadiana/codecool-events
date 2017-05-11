@@ -1,17 +1,17 @@
 package model;
 
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Event {
     private Integer id;
     private String name;
     private String description;
     private String category;
-    private Date date;
+    private Calendar date;
 
     Event(Integer id, String name, String description,
-          String category, Date date){
+          String category, Calendar date){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,7 +35,7 @@ public class Event {
         return category;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
