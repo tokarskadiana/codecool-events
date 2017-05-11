@@ -19,4 +19,24 @@ public class Event {
         this.date = date;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
 }
