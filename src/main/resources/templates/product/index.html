@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Codecool events</title>
 
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -20,14 +19,16 @@
 <body>
 
 <div class="container">
-
-    <div id="products" class="row list-group">
-
-        <div class="item col-xs-4 col-lg-4" th:each="event,iterStat : ${eventContainer}">
-           <div th:text="${event}"></div>
-        </div>
-    </div>
-
+    <table id="products" class="row list-group">
+        <thead>
+            <td>Events</td>
+        </thead>
+        <tbody>
+            <tr th:each="event,iterStat : ${eventContainer}">
+                <td th:text="${event.getName()}">event</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <div th:replace="footer :: copy"></div>
