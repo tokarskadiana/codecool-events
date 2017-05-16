@@ -16,6 +16,8 @@ public class Main {
 
         // Always add generic routes to the end
         get("/", EventController::renderProducts, new ThymeleafTemplateEngine());
+
+        get("/add", EventController::addProduct, new ThymeleafTemplateEngine());
     }
 
 
