@@ -15,9 +15,10 @@ public class Main {
         get("/hello", (req, res) -> "Hello World");
 
         // Always add generic routes to the end
-        get("/", EventController::renderProducts, new ThymeleafTemplateEngine());
+        get("/", EventController::renderEvents, new ThymeleafTemplateEngine());
 
-        get("/add", EventController::addProduct, new ThymeleafTemplateEngine());
+        get("/add", EventController::addEvent, new ThymeleafTemplateEngine());
+        post("/add", EventController::createEvent);
     }
 
 
