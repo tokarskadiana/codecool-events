@@ -9,6 +9,7 @@ import spark.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,19 +29,16 @@ public class EventController {
     }
 
     public static boolean createEvent (Request req, Response res){
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/YYYY");
+        Date date = null;
         try {
-            cal.setTime(sdf.parse(req.queryParams("date")));
+            date = new SimpleDateFormat("dd/mm/YYYY").parse(req.queryParams("date"));
         } catch (ParseException e) {
             e.printStackTrace();
-            return false;
         }
-        Event event = new Event(1,
-                    req.queryParams("name"),
+        Event event = new Event(req.queryParams("name"),
                 req.queryParams("description"),
                 req.queryParams("category"),
-                cal);
+                date);
         eventDao.add(event);
         res.redirect("/");
         return true;

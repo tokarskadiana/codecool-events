@@ -2,17 +2,17 @@ package model;
 
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Event {
     private Integer id;
     private String name;
     private String description;
     private String category;
-    private Calendar date;
+    private Date date;
 
-    public Event(Integer id, String name, String description,
-                 String category, Calendar date){
-        this.id = id;
+    public Event(String name, String description,
+                 String category, Date date){
         this.name = name;
         this.description = description;
         this.category = category;
@@ -35,8 +35,11 @@ public class Event {
         return category;
     }
 
-    public Calendar getDate() {
+    public Date getDate() {
         return date;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
