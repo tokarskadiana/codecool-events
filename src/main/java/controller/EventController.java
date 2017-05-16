@@ -17,4 +17,9 @@ public class EventController {
         params.put("eventContainer", eventDao.getAll());
         return new ModelAndView(params, "product/index");
     }
+
+    public static ModelAndView addProduct(Request req, Response res){
+        Map params = new HashMap<>();
+        return new ModelAndView(params, "product/add");
+    }
 }
