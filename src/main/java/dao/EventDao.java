@@ -3,6 +3,8 @@ package dao;
 import model.Event;
 import org.thymeleaf.util.DateUtils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,6 +39,18 @@ public class EventDao {
     }
 
     public void add(Event event){
-        //add to data base
+        try {
+            Connection connection = SqliteJDSCConnector.makeConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO events (name, description, category, date) VALUES(?,?,?,?)");
+            statement.setString(1, event.getName());
+            statement.setString(2,event.getDescription());
+            statement.setString(3,event.getCategory());
+            statement.setDate(4, new java.sql.Date(event.getDate().getTime()));
+            statement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
