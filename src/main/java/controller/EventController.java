@@ -28,10 +28,10 @@ public class EventController {
         return new ModelAndView(params, "product/add");
     }
 
-    public static boolean createEvent (Request req, Response res){
+    public static ModelAndView createEvent (Request req, Response res){
         Date date = null;
         try {
-            date = new SimpleDateFormat("dd/mm/YYYY").parse(req.queryParams("date"));
+            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(req.queryParams("date"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -41,6 +41,6 @@ public class EventController {
                 date);
         eventDao.add(event);
         res.redirect("/");
-        return true;
+        return null;
     }
 }
