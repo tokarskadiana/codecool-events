@@ -5,6 +5,7 @@ import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import java.sql.SQLException;
 
 import  static spark.Spark.*;
+import static spark.debug.DebugScreen.enableDebugScreen;
 
 
 public class Main {
@@ -13,6 +14,7 @@ public class Main {
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
         staticFileLocation("/public");
         port(8888);
+        enableDebugScreen();
         try {
             SqliteJDSCConnector.createTables();
         } catch (SQLException e) {
@@ -26,7 +28,7 @@ public class Main {
         get("/", EventController::renderEvents, new ThymeleafTemplateEngine());
 
         get("/add", EventController::addEvent, new ThymeleafTemplateEngine());
-        post("/add", EventController::createEvent);
+        post("/add", EventController::createEvent, new ThymeleafTemplateEngine());
     }
 
 
