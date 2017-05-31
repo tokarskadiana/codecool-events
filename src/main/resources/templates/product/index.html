@@ -18,18 +18,31 @@
 </head>
 <body>
 
-<div class="container">
-    <a  href="/add" class="button">Add new product</a>
-    <table id="products" class="row list-group">
+<div class="container col-md-12">
+    <h3>Codecool Events</h3>
+    <a  href="/add" class="button"><button type="button" class="btn btn-primary">Add new product</button></a>
+    <div class="table-responsive">
+            <table id="products" class="table table-bordred table-striped">
         <thead>
-            <td>Events</td>
+            <th>Event</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
         </thead>
         <tbody>
             <tr th:each="event,iterStat : ${eventContainer}">
                 <td th:text="${event.getName()}">event</td>
+                <td th:text="${event.getDescription()}">event</td>
+                <td th:text="${event.getCategory()}">event</td>
+                <td th:text="${event.getDate()}">event</td>
+                <td><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                <td><button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button></td>
             </tr>
         </tbody>
     </table>
+    </div>
 </div>
 
 <div th:replace="footer :: copy"></div>
