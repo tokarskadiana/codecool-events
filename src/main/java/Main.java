@@ -1,5 +1,7 @@
 import controller.EventController;
 import dao.SqliteJDSCConnector;
+import spark.Request;
+import spark.Response;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.sql.SQLException;
@@ -29,6 +31,12 @@ public class Main {
 
         get("/add", EventController::addEvent, new ThymeleafTemplateEngine());
         post("/add", EventController::createEvent, new ThymeleafTemplateEngine());
+
+        get("/edit/:id", EventController::editEvent, new ThymeleafTemplateEngine());
+        post("/edit/:id", EventController::updateEvent, new ThymeleafTemplateEngine());
+
+        get("/delete/:id", EventController::deleteEvent);
+
     }
 
 

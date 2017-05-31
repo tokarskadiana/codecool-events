@@ -19,13 +19,13 @@
 <body>
 
 <div class="container">
-   <form action="/add" method="post">
-       <input name="name" value="" placeholder="name" type="text"/>
-       <input name="description" value="" placeholder="description" type="text"/>
-       <input name="category" value="" placeholder="category" type="text"/>
-       <input name="date" value="" type="datetime-local" placeholder="yyyy-mm-dd hh:mm"/>
-       <input type="submit" value="Save"/>
-   </form>
+    <form th:action="|/edit/${event.getId()}|" method="post">
+        <input name="name" th:value = "${event.getName()}" placeholder="name" type="text"/>
+        <input name="description" th:value="${event.getDescription()}" placeholder="description" type="text"/>
+        <input name="category" th:value="${event.getCategory()}" placeholder="category" type="text"/>
+        <input name="date" th:value="${event.getStringDate()}" type="datetime-local"/>
+        <input type="submit" value="Save"/>
+    </form>
 </div>
 
 <div th:replace="footer :: copy"></div>

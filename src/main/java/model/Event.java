@@ -1,6 +1,7 @@
 package model;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -37,6 +38,9 @@ public class Event {
 
     public Date getDate() {
         return date;
+    }
+    public String getStringDate(){
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
     }
     public void setId(Integer id) {
         this.id = id;

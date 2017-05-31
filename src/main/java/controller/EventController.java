@@ -30,8 +30,37 @@ public class EventController {
 
     public static ModelAndView createEvent (Request req, Response res){
         Date date = null;
+        for (String dateFormat : new String[]{"yyyy-MM-dd'T'HH:mm",
+                "yyyy-MM-dd HH:mm"}){
+            if(date==null) {
+                try {
+                    date = new SimpleDateFormat(dateFormat).parse(req.queryParams("date"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        Event event = new Event(req.queryParams("name"),
+                req.queryParams("description"),
+                req.queryParams("category"),
+                date);
+        eventDao.add(event);
+        res.redirect("/");
+        return null;
+    }
+
+    public static ModelAndView editEvent(Request req, Response res){
+        Map params = new HashMap<>();
+        Event event = eventDao.getById(Integer.parseInt(req.params(":id")));
+
+        params.put("event", event);
+        return new ModelAndView(params, "product/edit");
+    }
+
+    public static ModelAndView updateEvent (Request req, Response res){
+        Date date = null;
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(req.queryParams("date"));
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(req.queryParams("date"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -39,7 +68,15 @@ public class EventController {
                 req.queryParams("description"),
                 req.queryParams("category"),
                 date);
-        eventDao.add(event);
+        event.setId(Integer.parseInt(req.params(":id")));
+        eventDao.update(event);
+        res.redirect("/");
+        return null;
+    }
+
+    public static ModelAndView deleteEvent(Request req, Response res){
+        Event event = eventDao.getById(Integer.parseInt(req.params(":id")));
+        eventDao.delete(event);
         res.redirect("/");
         return null;
     }
