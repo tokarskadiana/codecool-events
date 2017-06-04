@@ -35,6 +35,8 @@ public class Main {
         get("/edit/:id", EventController::editEvent, new ThymeleafTemplateEngine());
         post("/edit/:id", EventController::updateEvent, new ThymeleafTemplateEngine());
 
+        get("/show/:id", EventController::showEvent, new ThymeleafTemplateEngine());
+
         get("/delete/:id", EventController::deleteEvent);
 
     }

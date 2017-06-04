@@ -80,4 +80,12 @@ public class EventController {
         res.redirect("/");
         return null;
     }
+
+    public static ModelAndView showEvent(Request req, Response res){
+        Map params = new HashMap<>();
+        Event event = eventDao.getById(Integer.parseInt(req.params(":id")));
+
+        params.put("event", event);
+        return new ModelAndView(params, "product/show");
+    }
 }

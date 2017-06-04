@@ -18,32 +18,34 @@
 </head>
 <body>
 
-<div class="container col-md-10 col-md-offset-1">
+<div class="container col-md-12">
     <!--<div th:replace="navbar :: copy"></div>-->
-    <div class="page-header text-center">
-        <h1>Codecool Events</h1>
-    </div>
 
-    <div class="button">
-        <a  href="/add"><button type="button" class="btn btn-primary">Add new product</button></a>
-    </div>
     <div class="table-responsive">
-            <table id="products" class="table table-bordred table-striped">
-        <thead>
+        <table id="products" class="table table-bordered table-striped">
+            <thead>
             <th>Event</th>
+            <th>Description</th>
             <th>Category</th>
             <th>Date</th>
-        </thead>
-        <tbody>
-            <tr th:each="event,iterStat : ${eventContainer}">
-                <!--<td th:text="${event.getName()}">event</td>-->
-                <td><a th:text="${event.getName()}" th:href="|/show/${event.getId()}|">
-                    </a></td>
+            <th>Edit</th>
+            <th>Delete</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${event.getName()}">event</td>
+                <td th:text="${event.getDescription()}">event</td>
                 <td th:text="${event.getCategory()}">event</td>
                 <td th:text="${event.getStringDate()}">event</td>
+                <td><a th:href="|/edit/${event.getId()}|">
+                    <button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil">
+                    </span></button></a></td>
+                <td><a th:href="|/delete/${event.getId()}|">
+                    <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash">
+                    </span></button></a></td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
 </div>
 
